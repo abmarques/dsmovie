@@ -1,7 +1,7 @@
 package com.devsuperior.dsmovie.entities;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -13,9 +13,9 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "tb_movie")
+@NoArgsConstructor
 public class Movie {
 
     @Id
