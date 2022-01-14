@@ -2,6 +2,7 @@ package com.devsuperior.dsmovie.services;
 
 import com.devsuperior.dsmovie.dtos.MovieDTO;
 import com.devsuperior.dsmovie.repositories.MovieRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,11 +32,10 @@ public class MovieService {
     public MovieDTO findById(Long id) {
         var movie = repository.findById(id).get();
 
-        return MovieDTO.builder()
-                .id(movie.getId())
-                .title(movie.getTitle())
-                .image(movie.getImage())
-                .score(movie.getScore())
-                .build();
+        var movieDTO = MovieDTO.builder().build();
+
+        BeanUtils.copyProperties(movie, movieDTO);
+
+        return movieDTO;
     }
 }
